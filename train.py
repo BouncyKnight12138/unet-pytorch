@@ -133,7 +133,7 @@ if __name__ == "__main__":
     #-------------------------------#
     #   主干网络预训练权重的使用
     #-------------------------------#
-    pretrained = False
+    pretrained = False#False不使用主干的预训练权重
     #-------------------------------#
     #   Cuda的使用
     #-------------------------------#
@@ -150,15 +150,16 @@ if __name__ == "__main__":
     #   权值文件的下载请看README
     #   权值和主干特征提取网络一定要对应
     #-------------------------------------------#
-    model_path = r"model_data/unet_voc.pth"
-    print('Loading weights into state dict...')
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model_dict = model.state_dict()
-    pretrained_dict = torch.load(model_path, map_location=device)
-    pretrained_dict = {k: v for k, v in pretrained_dict.items() if np.shape(model_dict[k]) ==  np.shape(v)}
-    model_dict.update(pretrained_dict)
-    model.load_state_dict(model_dict)
-    print('Finished!')
+    if ~pretrained:
+        model_path = r"model_data/unet_voc.pth"
+        print('Loading weights into state dict...')
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        model_dict = model.state_dict()
+        pretrained_dict = torch.load(model_path, map_location=device)
+        pretrained_dict = {k: v for k, v in pretrained_dict.items() if np.shape(model_dict[k]) ==  np.shape(v)}
+        model_dict.update(pretrained_dict)
+        model.load_state_dict(model_dict)
+        print('Finished!')
 
     if Cuda:
         net = torch.nn.DataParallel(model)

@@ -107,3 +107,9 @@ img/street.jpg
 ## Reference
 https://github.com/ggyyzm/pytorch_segmentation  
 https://github.com/bonlime/keras-deeplab-v3-plus
+
+## 视频地址
+https://www.bilibili.com/video/BV1rz4y117rR?p=1
+
+## 博客地址
+https://blog.csdn.net/weixin_44791964/article/details/108866828

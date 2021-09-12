@@ -34,7 +34,7 @@ class Unet(object):
     #   初始化UNET
     #---------------------------------------------------#
     def __init__(self, **kwargs):
-        self.__dict__.update(self._defaults)
+        self.__dict__.update(self._defaults)#批量构建类的属性
         self.generate()
 
     #---------------------------------------------------#
@@ -97,7 +97,7 @@ class Unet(object):
         #   进行不失真的resize，添加灰条，进行图像归一化
         #---------------------------------------------------#
         image, nw, nh = self.letterbox_image(image,(self.model_image_size[1],self.model_image_size[0]))
-        images = [np.array(image)/255]
+        images = [np.array(image)/255]#归一化
         images = np.transpose(images,(0,3,1,2))
 
         #---------------------------------------------------#
