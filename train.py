@@ -189,7 +189,7 @@ if __name__ == "__main__":
         Batch_size      = 2
         
         optimizer       = optim.Adam(model.parameters(),lr)
-        lr_scheduler    = optim.lr_scheduler.StepLR(optimizer,step_size=1,gamma=0.92)
+        lr_scheduler    = optim.lr_scheduler.StepLR(optimizer,step_size=1,gamma=0.92)#调整学习率
 
         train_dataset   = DeeplabDataset(train_lines, inputs_size, NUM_CLASSES, True, dataset_path)
         val_dataset     = DeeplabDataset(val_lines, inputs_size, NUM_CLASSES, False, dataset_path)
@@ -208,7 +208,7 @@ if __name__ == "__main__":
             param.requires_grad = False
 
         for epoch in range(Init_Epoch,Interval_Epoch):
-            fit_one_epoch(model,epoch,epoch_size,epoch_size_val,gen,gen_val,Interval_Epoch,Cuda)
+            fit_one_epoch(model,epoch,epoch_size,epoch_size_val,gen,gen_val,Interval_Epoch,Cuda)#开始训练
             lr_scheduler.step()
     
     if True:
